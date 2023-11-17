@@ -61,7 +61,7 @@ namespace CoreWcf.Samples.Http
         public CalculatorServiceClient() : 
                 base(CalculatorServiceClient.GetDefaultBinding(), CalculatorServiceClient.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_ICalculatorService.ToString();
+            this.Endpoint.Name = EndpointConfiguration.NetHttpBinding_ICalculatorService.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
@@ -143,9 +143,9 @@ namespace CoreWcf.Samples.Http
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICalculatorService))
+            if ((endpointConfiguration == EndpointConfiguration.NetHttpBinding_ICalculatorService))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                System.ServiceModel.NetHttpBinding result = new System.ServiceModel.NetHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
@@ -157,27 +157,27 @@ namespace CoreWcf.Samples.Http
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICalculatorService))
+            if ((endpointConfiguration == EndpointConfiguration.NetHttpBinding_ICalculatorService))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost/CoreWcfSamples/CalculatorService/CalculatorService/basicHttp");
+                return new System.ServiceModel.EndpointAddress("http://localhost:5000/CalculatorService/netHttp");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return CalculatorServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_ICalculatorService);
+            return CalculatorServiceClient.GetBindingForEndpoint(EndpointConfiguration.NetHttpBinding_ICalculatorService);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return CalculatorServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_ICalculatorService);
+            return CalculatorServiceClient.GetEndpointAddress(EndpointConfiguration.NetHttpBinding_ICalculatorService);
         }
         
         public enum EndpointConfiguration
         {
             
-            BasicHttpBinding_ICalculatorService,
+            NetHttpBinding_ICalculatorService,
         }
     }
 }

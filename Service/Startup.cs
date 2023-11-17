@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreWcf.Samples.Http
 {
-    public class BasicHttpBindingStartup
+    public class NetHttpBindingStartup
     {
         public void ConfigureServices(IServiceCollection services)
         {
@@ -20,8 +20,8 @@ namespace CoreWcf.Samples.Http
             {
                 // Add the Calculator Service
                 builder.AddService<CalculatorService>(serviceOptions => { })
-                // Add BasicHttpBinding endpoint
-                .AddServiceEndpoint<CalculatorService, ICalculatorService>(new BasicHttpBinding(), "/CalculatorService/basicHttp");
+                // Add NetHttpBinding endpoint
+                .AddServiceEndpoint<CalculatorService, ICalculatorService>(new NetHttpBinding(), "/CalculatorService/netHttp");
 
                 // Configure WSDL to be available
                 var serviceMetadataBehavior = app.ApplicationServices.GetRequiredService<CoreWCF.Description.ServiceMetadataBehavior>();

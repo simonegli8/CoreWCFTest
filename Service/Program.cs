@@ -15,6 +15,6 @@ namespace CoreWcf.Samples.Http
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
            WebHost.CreateDefaultBuilder(args)
-            .UseStartup<BasicHttpBindingStartup>();
+            .UseStartup<NetHttpBindingStartup>();
     }
 }
